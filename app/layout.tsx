@@ -1,8 +1,7 @@
-import Sidebar from '@/components/Sidebar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
-import { getServerSession } from 'next-auth'
+import { Providers } from '@/providers/Providers'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
@@ -16,15 +15,12 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const session = await getServerSession();
-
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <main className='flex min-h-screen relative'>
-          {session && <Sidebar />}
+        <Providers>
           {children}
-        </main>
+        </Providers>
       </body>
     </html>
   )

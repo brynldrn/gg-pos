@@ -15,7 +15,7 @@ export default function Sidebar() {
   }), [])
 
   return (
-    <aside className='w-72 bg-transparent border-r border-zinc-600 px-5 flex flex-col justify-between'>
+    <aside className='w-3/4 md:w-[340px] pt-9 px-4 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out md:flex md:flex-col md:justify-between z-10 overflow-hidden shadow-2xl md:shadow-none border-r border-zinc-800 bg-zinc-900'>
       <div className='flex w-full justify-center items-center my-8'>
         <UtensilsCrossed size={50} />
       </div>
@@ -25,9 +25,10 @@ export default function Sidebar() {
           <li>
             <Link 
               className={classNames('flex gap-3 w-full px-2 py-3 rounded-md hover:bg-zinc-600 transition duration-200 ease-in-out items-center m-1', {
-                'bg-zinc-600': pathname === '/'
+                'bg-zinc-600': pathname === '/menu-list'
               })}
-              href="/"
+              href="/menu-list"
+              prefetch
             >
               <Utensils />
               <span>Menu List</span>
@@ -39,6 +40,7 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/reports'
               })}
               href="/reports"
+              prefetch
             >
               <LineChart />
               <span>Reports</span>
@@ -50,6 +52,7 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/menu-management'
               })}
               href="/menu-management"
+              prefetch
             >
               <MenuSquare />
               <span>Menu Management</span>
@@ -61,6 +64,7 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/user-management'
               })}
               href="/user-management"
+              prefetch
             >
               <User />
               <span>User Management</span>
@@ -72,6 +76,7 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/settings'
               })}
               href="/settings"
+              prefetch
             >
               <Cog />
               <span>App Settings</span>

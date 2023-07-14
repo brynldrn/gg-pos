@@ -11,7 +11,7 @@ export default function LoginForm() {
 
     signIn('github', {
       redirect: true,
-      callbackUrl: '/'
+      callbackUrl: '/menu-list'
     })
   }, [])
 
