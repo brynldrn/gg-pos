@@ -1,3 +1,50 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@next/eslint-plugin-next",
+    "@typescript-eslint",
+    "react",
+    "unused-imports"
+  ],
+  "rules": {
+    "quotes": ["error", "single"],
+    "no-console": "error",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "react/no-unescaped-entities": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "no-param-reassign": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/button-has-type": 0,
+    "max-len": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "sonarjs/prefer-immediate-return": 0,
+    "sonarjs/cognitive-complexity": 0,
+    "react/jsx-max-props-per-line": [1, { "when": "always" }],
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "react/function-component-definition": 0,
+    "react/react-in-jsx-scope": 0,
+    "eol-last": ["error", "always"],
+    "indent": [2, 2, { "SwitchCase": 1}],
+    "no-multiple-empty-lines": "error"
+  },
+  "ignorePatterns": ["./app/**/*.test.ts"]
 }
