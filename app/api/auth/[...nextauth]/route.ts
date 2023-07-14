@@ -1,5 +1,8 @@
+import prisma from '@/lib/prisma';
 import NextAuth, { NextAuthOptions } from 'next-auth'
+import Credentials from 'next-auth/providers/credentials';
 import GitHub from 'next-auth/providers/github';
+import bcrypt from 'bcrypt'
 
 export const authConfig: NextAuthOptions = {
   providers: [
@@ -8,6 +11,29 @@ export const authConfig: NextAuthOptions = {
       name: 'github',
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || ''
+    }),
+    Credentials({
+      id: 'credentials',
+      name: 'credentials',
+      credentials: {
+        username: { label: 'Username', type: 'text', placeholder: 'Username' },
+        password: { label: 'Password', type: 'password', placeholder: 'Password' }
+      },
+      async authorize(credentials, _req) {
+        const user = await prisma.user.findUnique({
+          where: {
+            username: credentials?.username
+          }
+        })
+
+        const correctPassword = await bcrypt.compare(credentials?.password || '', user?.password || '')
+        
+        if (correctPassword) {
+          return user;
+        }
+
+        return null
+      }
     })
   ],
   pages: {

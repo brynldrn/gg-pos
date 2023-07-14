@@ -14,6 +14,7 @@ model ProductCategory {
   id      String    @id @default(cuid())
   name    String    @unique
   Product Product[]
+  color   String    @default("green")
 }
 
 model Product {
@@ -25,4 +26,23 @@ model Product {
   image             String
   categoryId        ProductCategory @relation(fields: [productCategoryId], references: [id])
   productCategoryId String
+  Transaction       Transaction?    @relation(fields: [transactionId], references: [id])
+  transactionId     String?
+}
+
+model Transaction {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  total     Float
+  products  Product[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt
+  isAdmin   Boolean  @default(false)
 }

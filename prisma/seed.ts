@@ -1,9 +1,12 @@
 /* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
 
 async function main() {
+  const salt = bcrypt.genSaltSync(10);
+
   const mealCategory = await prisma.productCategory.upsert({
     where: { name: 'Meal' },
     update: {},
@@ -64,8 +67,19 @@ async function main() {
     }
   })
 
+  const adminUser = await prisma.user.upsert({
+    where: { username: 'admin' },
+    update: {},
+    create: {
+      username: 'admin',
+      isAdmin: true,
+      password: bcrypt.hashSync('admin', salt)
+    }
+  })
+
   console.log({ mealCategory, drinksCategory, sidesCategory })
   console.log({ saltedEggChicken, orangeJuice, cornAndCarrots })
+  console.log({ adminUser })
 }
 main()
   .then(async () => {

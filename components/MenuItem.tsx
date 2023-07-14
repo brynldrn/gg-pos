@@ -2,7 +2,15 @@ import { ShoppingBag } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-export default function MenuItem() {
+type MenuItemType = {
+  id: string,
+  name: string,
+  image?: string,
+  price: number,
+  category: string,
+}
+
+export default function MenuItem({}: MenuItemType) {
   return (
     <article className='w-60 p-4 border border-zinc-700 shadow-zinc-700 shadow-md rounded-xl relative'>
       <div className='relative w-full h-52 mb-1'>
