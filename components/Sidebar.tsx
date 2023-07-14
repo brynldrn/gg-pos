@@ -28,7 +28,6 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/menu-list'
               })}
               href="/menu-list"
-              prefetch
             >
               <Utensils />
               <span>Menu List</span>
@@ -40,7 +39,6 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/reports'
               })}
               href="/reports"
-              prefetch
             >
               <LineChart />
               <span>Reports</span>
@@ -52,7 +50,6 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/menu-management'
               })}
               href="/menu-management"
-              prefetch
             >
               <MenuSquare />
               <span>Menu Management</span>
@@ -64,7 +61,6 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/user-management'
               })}
               href="/user-management"
-              prefetch
             >
               <User />
               <span>User Management</span>
@@ -76,7 +72,6 @@ export default function Sidebar() {
                 'bg-zinc-600': pathname === '/settings'
               })}
               href="/settings"
-              prefetch
             >
               <Cog />
               <span>App Settings</span>

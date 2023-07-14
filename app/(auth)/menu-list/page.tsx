@@ -13,8 +13,6 @@ export default async function MenuList() {
         {menuItems?.map((item) => 
           <MenuItem key={item.id} />
         )}
-        <MenuItem />
-        <MenuItem />
       </div>
       {!menuItems?.length && (
         <div className="flex items-center justify-center">
