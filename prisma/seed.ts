@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt'
@@ -76,10 +77,6 @@ async function main() {
       password: bcrypt.hashSync('admin', salt)
     }
   })
-
-  console.log({ mealCategory, drinksCategory, sidesCategory })
-  console.log({ saltedEggChicken, orangeJuice, cornAndCarrots })
-  console.log({ adminUser })
 }
 main()
   .then(async () => {

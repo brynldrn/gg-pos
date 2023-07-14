@@ -1,10 +1,14 @@
+import { authConfig } from '@/app/api/auth/[...nextauth]/route';
 import MenuItem from '@/components/MenuItem';
 import prisma from '@/lib/prisma';
 import dayjs from 'dayjs';
+import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 
 export default async function MenuList() {
   const menuItems = await prisma.product.findMany();
+  const session = await getServerSession(authConfig);
+  console.log('session :>> ', session);
 
   return (
     <div className='w-full overflow-hidden'>

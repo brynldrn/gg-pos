@@ -29,7 +29,10 @@ export const authConfig: NextAuthOptions = {
         const correctPassword = await bcrypt.compare(credentials?.password || '', user?.password || '')
         
         if (correctPassword) {
-          return user;
+          return {
+            id: user?.id || 'userId',
+            ...user,
+          };
         }
 
         return null
@@ -38,6 +41,17 @@ export const authConfig: NextAuthOptions = {
   ],
   pages: {
     signIn: '/login'
+  },
+  callbacks: {
+    session: async ({session, token, user}) => {
+      return {
+        ...session,
+        user: {
+          ...token,
+          ...user,
+        }
+      }
+    }
   }
 }
 
